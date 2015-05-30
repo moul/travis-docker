@@ -7,18 +7,18 @@ UMLDIR="$(pwd)"
 echo "$@" > "${UMLDIR}/.command"
 export -p > "${UMLDIR}/.envp"
 rm -f "${UMLDIR}/.exit_code"
-SLIRPBIN="/usr/bin/slirp-fullbolt"
 
 QUIET=${QUIET:-0}
+DOCKER_PORT=${DOCKER_PORT:-2375}
+HOSTIP=$(ip addr | grep 'scope global' | head -n1 | awk '{print $2}' | cut -f1  -d'/')
 
+# Create a silent slirp-wrapper script
+echo '#!/bin/sh -e' > "${UMLDIR}/slirp-wrapper"
+chmod +x "${UMLDIR}/slirp-wrapper"
 if [ "${QUIET}" -eq 1 ]; then
-    # Create a silent slirp-fullbolt binary
-    cat <<EOF > "${UMLDIR}/slirp-fullbolt-silent"
-#!/bin/sh
-${SLIRPBIN} 2>/dev/null
-EOF
-    SLIRPBIN="${UMLDIR}/slirp-fullbolt-silent"
-    chmod +x "${SLIRPBIN}"
+    echo "exec /usr/bin/slirp-fullbolt -S 'redir ${DOCKER_PORT} 2375' 'host addr ${HOSTIP}' '\$@' 2>/dev/null" >> "${UMLDIR}/slirp-wrapper"
+else
+    echo "exec /usr/bin/slirp-fullbolt -S 'redir ${DOCKER_PORT} 2375' 'host addr ${HOSTIP}' '\$@'" >> "${UMLDIR}/slirp-wrapper"
 fi
 
 (
@@ -27,7 +27,7 @@ fi
 	quiet \
 	mem=2G \
 	rootfstype=hostfs rw \
-	eth0=slirp,,"${SLIRPBIN}" \
+	eth0=slirp,,"${UMLDIR}/slirp-wrapper" \
 	"init=${UMLDIR}/linux-init" \
 	"WORKDIR=${WORKDIR}" \
 	"UMLDIR=${UMLDIR}" \
