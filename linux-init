@@ -94,8 +94,11 @@ else
     docker --storage-driver="${DOCKER_STORAGE_DRIVER}" -d -H unix:///var/run/docker.sock -H tcp://0.0.0.0:2375 &>/dev/null &
 fi
 
+
 # Waiting for docker socket
-while ! [ -e /var/run/docker.sock ]; do sleep 0.1; done
+n=0
+until [ $n -ge 120 ]; do test -e /var/run/docker.sock && break; done
+test -e /var/run/docker.sock || exit 1
 
 
 # Print docker information
