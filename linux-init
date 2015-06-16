@@ -119,5 +119,11 @@ set +e
 /bin/bash -xec "${command}"
 echo $? > "${UMLDIR}/.exit_code"
 
-mount
-df -h
+(
+    set +e
+    mount
+    df -h
+    ls -la /dev/shm
+    ls -la /run/shm
+    ls -la /run/lock
+)
