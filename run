@@ -2,8 +2,12 @@
 
 # stats
 exit_stats() {
+    set +e
     set -x
     df -h
+    ls -la /dev/shm
+    ls -la /run/shm
+    ls -la /run/lock
     mount
 }
 trap exit_stats EXIT SIGINT SIGTERM
