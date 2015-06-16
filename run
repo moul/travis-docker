@@ -36,5 +36,11 @@ fi
 	"DOCKER_BACKEND_FS=${DOCKER_BACKEND_FS:-host}"
 )
 
+(
+    set -x
+    mount
+    df -h
+)
+
 exit_code=$(cat "${UMLDIR}/.exit_code")
 eval exit ${exit_code}
