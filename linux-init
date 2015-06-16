@@ -118,3 +118,6 @@ command=$(cat "${UMLDIR}/.command")
 set +e
 /bin/bash -xec "${command}"
 echo $? > "${UMLDIR}/.exit_code"
+
+mount
+df -h
