@@ -1,5 +1,13 @@
 #!/bin/sh
 
+# stats
+exit_stats() {
+    set -x
+    df -h
+    mount
+}
+trap exit_stats EXIT SIGINT SIGTERM
+
 set -e
 WORKDIR="$(pwd)"
 cd "$(dirname "$0")"
@@ -34,12 +42,6 @@ fi
 	"QUIET=${QUIET}" \
 	"DOCKER_STORAGE_DRIVER=${DOCKER_STORAGE_DRIVER:-devicemapper}" \
 	"DOCKER_BACKEND_FS=${DOCKER_BACKEND_FS:-host}"
-)
-
-(
-    set -x
-    mount
-    df -h
 )
 
 exit_code=$(cat "${UMLDIR}/.exit_code")
