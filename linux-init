@@ -97,7 +97,7 @@ fi
 
 # Waiting for docker socket
 n=0
-until [ $n -ge 120 ]; do test -e /var/run/docker.sock && break; done
+until [ $n -ge 120 ]; do ((n++)) && sleep 0.1 && test -e /var/run/docker.sock && break; done
 test -e /var/run/docker.sock || exit 1
 
 
