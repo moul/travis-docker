@@ -31,7 +31,7 @@ sudo: true                  # Required to install packages
 env:
   global:
     - DOCKER_VERSION=1.7.1  # Install Docker version 1.7.1
-    - DOCKER_VERSION=1.7.1  # Install Docker using get.docker.com (may break)
+    - DOCKER_VERSION=get.docker.com  # Install Docker using get.docker.com (may break)
 
     - BRANCH=stable         # Use 'stable' branch
     - BRANCH=develop        # Use 'develop' branch
