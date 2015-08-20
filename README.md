@@ -3,6 +3,17 @@
 
 Running Docker in a Travis CI build.
 
+---
+
+### [Travis now officially supports Docker !](http://docs.travis-ci.com/user/docker/)
+
+This project is now deprecated, but the resources may be useful:
+
+* as an example to create Docker workspaces on environments with constraints
+* to use a specific version of Docker or a specific daemon configuration on Travis
+
+---
+
 ![](https://github.com/moul/travis-docker/raw/master/assets/logo.png)
 
 `./run` script will run commands in a user-land linux with `docker` and
