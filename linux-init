@@ -94,8 +94,11 @@ else
     docker --storage-driver="${DOCKER_STORAGE_DRIVER}" -d -H unix:///var/run/docker.sock -H tcp://0.0.0.0:2375 &>/dev/null &
 fi
 
+
 # Waiting for docker socket
-while ! [ -e /var/run/docker.sock ]; do sleep 0.1; done
+n=0
+until [ $n -ge 120 ]; do ((n++)) && sleep 0.1 && test -e /var/run/docker.sock && break; done
+test -e /var/run/docker.sock || exit 1
 
 
 # Print docker information
@@ -115,3 +118,12 @@ command=$(cat "${UMLDIR}/.command")
 set +e
 /bin/bash -xec "${command}"
 echo $? > "${UMLDIR}/.exit_code"
+
+(
+    set +e
+    mount
+    df -h
+    ls -la /dev/shm
+    ls -la /run/shm
+    ls -la /run/lock
+)
