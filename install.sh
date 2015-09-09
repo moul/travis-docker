@@ -43,7 +43,7 @@ if [ "x$DOCKER_VERSION" = "xget.docker.com" ]; then
     curl -s https://get.docker.com/ | sh -xe
 else
     sudo mkdir -p /var/lib/docker
-    wget https://get.docker.io/ubuntu/pool/main/l/lxc-docker-${DOCKER_VERSION}/lxc-docker-${DOCKER_VERSION}_${DOCKER_VERSION}_amd64.deb && \
+    wget --secure-protocol=TLSv1 https://get.docker.io/ubuntu/pool/main/l/lxc-docker-${DOCKER_VERSION}/lxc-docker-${DOCKER_VERSION}_${DOCKER_VERSION}_amd64.deb && \
         sudo dpkg -i lxc-docker-${DOCKER_VERSION}_${DOCKER_VERSION}_amd64.deb && \
         rm -f lxc-docker-${DOCKER_VERSION}_${DOCKER_VERSION}_amd64.deb
 fi
