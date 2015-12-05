@@ -1,5 +1,5 @@
 KERNEL_VERSION ?=	4.0.2
-DOCKER_IMAGE ?=		moul/kernel-builder:stable
+DOCKER_IMAGE ?=		moul/kernel-builder:latest
 TARGET ?=		../linux
 
 CONCURRENCY_LEVEL ?=	$(shell grep -m1 cpu\ cores /proc/cpuinfo 2>/dev/null | sed 's/[^0-9]//g' | grep '[0-9]' || sysctl hw.ncpu | sed 's/[^0-9]//g' | grep '[0-9]')
