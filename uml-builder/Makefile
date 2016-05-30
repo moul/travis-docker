@@ -12,6 +12,7 @@ DOCKER_VOLUMES ?=	-v $(PWD)/.config:/tmp/.config \
 			-v $(PWD)/patches:/usr/src/linux/patches
 DOCKER_ENV ?=		-e CONCURRENCY_LEVEL=$(CONCURRENCY_LEVEL) \
 			-e LOCALVERSION_AUTO=no \
+			-e CROSS_COMPILE="ccache " \
 			-e ARCH=$(ARCH)
 DOCKER_RUN_OPTS ?=	-it --rm
 DOCKER_BIN ?=		docker
