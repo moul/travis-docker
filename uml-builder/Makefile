@@ -1,4 +1,4 @@
-KERNEL_VERSION ?=	4.0.2
+KERNEL_VERSION ?=	4.6
 DOCKER_IMAGE ?=		moul/kernel-builder:latest
 TARGET ?=		../linux
 
@@ -90,4 +90,3 @@ dist_do:
 .PHONY: dist_teardown
 dist_teardown:
 	git checkout master
-
