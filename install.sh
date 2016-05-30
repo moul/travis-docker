@@ -15,7 +15,7 @@ fi
 
 
 # version numbers
-COMPOSE_VERSION=1.2.0
+COMPOSE_VERSION=1.7.1
 
 
 cd "$(dirname "$0")"
