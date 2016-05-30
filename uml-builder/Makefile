@@ -1,5 +1,5 @@
-KERNEL_VERSION ?=	4.0.2
-DOCKER_IMAGE ?=		moul/kernel-builder:stable
+KERNEL_VERSION ?=	4.6
+DOCKER_IMAGE ?=		moul/kernel-builder:latest
 TARGET ?=		../linux
 
 CONCURRENCY_LEVEL ?=	$(shell grep -m1 cpu\ cores /proc/cpuinfo 2>/dev/null | sed 's/[^0-9]//g' | grep '[0-9]' || sysctl hw.ncpu | sed 's/[^0-9]//g' | grep '[0-9]')
@@ -12,6 +12,7 @@ DOCKER_VOLUMES ?=	-v $(PWD)/.config:/tmp/.config \
 			-v $(PWD)/patches:/usr/src/linux/patches
 DOCKER_ENV ?=		-e CONCURRENCY_LEVEL=$(CONCURRENCY_LEVEL) \
 			-e LOCALVERSION_AUTO=no \
+			-e CROSS_COMPILE="ccache " \
 			-e ARCH=$(ARCH)
 DOCKER_RUN_OPTS ?=	-it --rm
 DOCKER_BIN ?=		docker
@@ -90,4 +91,3 @@ dist_do:
 .PHONY: dist_teardown
 dist_teardown:
 	git checkout master
-

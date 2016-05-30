@@ -3,6 +3,17 @@
 
 Running Docker in a Travis CI build.
 
+---
+
+### [Travis now officially supports Docker !](https://docs.travis-ci.com/user/docker/)
+
+This project is now deprecated, but the resources may be useful:
+
+* as an example to create Docker workspaces on environments with constraints
+* to use a specific version of Docker or a specific daemon configuration on Travis
+
+---
+
 ![](https://github.com/moul/travis-docker/raw/master/assets/logo.png)
 
 `./run` script will run commands in a user-land linux with `docker` and
@@ -69,7 +80,7 @@ You can find more examples on [travis-docker-example](https://github.com/moul/tr
 ## sudo requirement
 
 As you probably noticed, the examples above contained the line `sudo: true`.
-Travis is [moving towards a new infrastructure](http://docs.travis-ci.com/user/migrating-from-legacy/)
+Travis is [moving towards a new infrastructure](https://docs.travis-ci.com/user/migrating-from-legacy/)
 where `sudo` is not supported (yet?).
 That line ensures that your project will state that your project requires `sudo`
 (as travis-docker does) and should therefore not be run on the new infrastructure.
@@ -162,11 +173,11 @@ Proof of concept
 - https://github.com/moul/travis-docker-example
 - https://github.com/pathwar/core
 - https://github.com/pathwar/level-helloworld
-- https://github.com/rporrini/abstat-akp-inference
+- https://github.com/rporrini/abstat-inf
 - https://github.com/scaleway/kernel-tools
 - https://github.com/stevenalexander/docker-nginx-dropwizard
-- https://github.com/theodi/british_values
-- https://github.com/Webtrends/wookie
+- https://github.com/theodi/chef-certificates
+- https://github.com/Webtrends/wookiee
 - https://github.com/William-Yeh/ansible-nginx
 - https://github.com/William-Yeh/ansible-nodejs
 - https://github.com/William-Yeh/docker-ansible
