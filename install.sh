@@ -28,7 +28,7 @@ sudo chmod +x /usr/sbin/policy-rc.d
 
 # Install dependencies
 sudo apt-get update
-sudo apt-get install -y slirp lxc aufs-tools cgroup-lite
+sudo apt-get install -y slirp aufs-tools cgroup-lite
 
 
 # Avoid running installed daemons
