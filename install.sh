@@ -15,7 +15,7 @@ fi
 
 
 # version numbers
-COMPOSE_VERSION=1.2.0
+COMPOSE_VERSION=1.7.1
 
 
 cd "$(dirname "$0")"
@@ -28,7 +28,7 @@ sudo chmod +x /usr/sbin/policy-rc.d
 
 # Install dependencies
 sudo apt-get update
-sudo apt-get install -y slirp lxc aufs-tools cgroup-lite
+sudo apt-get install -y slirp aufs-tools cgroup-lite
 
 
 # Avoid running installed daemons
@@ -38,12 +38,12 @@ sudo chmod +x /usr/sbin/policy-rc.d
 
 # Install docker
 #curl -s https://get.docker.com/ | sh
-DOCKER_VERSION=${DOCKER_VERSION:-1.7.1}
+DOCKER_VERSION=${DOCKER_VERSION:-1.11.1}
 if [ "x$DOCKER_VERSION" = "xget.docker.com" ]; then
     curl -s https://get.docker.com/ | sh -xe
 else
     sudo mkdir -p /var/lib/docker
-    wget --secure-protocol=TLSv1 https://get.docker.io/ubuntu/pool/main/l/lxc-docker-${DOCKER_VERSION}/lxc-docker-${DOCKER_VERSION}_${DOCKER_VERSION}_amd64.deb && \
+    wget https://get.docker.com/ubuntu/pool/main/l/lxc-docker-${DOCKER_VERSION}/lxc-docker-${DOCKER_VERSION}_${DOCKER_VERSION}_amd64.deb && \
         sudo dpkg -i lxc-docker-${DOCKER_VERSION}_${DOCKER_VERSION}_amd64.deb && \
         rm -f lxc-docker-${DOCKER_VERSION}_${DOCKER_VERSION}_amd64.deb
 fi
