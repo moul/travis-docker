@@ -1,5 +1,5 @@
 # travis-docker
-[![Build Status](https://img.shields.io/travis/moul/travis-docker.svg)](https://travis-ci.org/moul/travis-docker)
+[![Build Status](https://img.shields.io/travis/moul/travis-docker.svg)](https://travis-ci.org/moul/travis-docker) [![GuardRails badge](https://badges.production.guardrails.io/moul/travis-docker.svg)](https://www.guardrails.io)
 
 Running Docker in a Travis CI build.
 
